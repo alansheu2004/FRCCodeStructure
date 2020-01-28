@@ -24,17 +24,17 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     origTime = System.currentTimeMillis();
-    Context.robotController.autoDrive.startSpline();
+    // Context.robotController.autoDrive.startSpline();
   }
 
   @Override
   public void autonomousPeriodic() {
-    Context.robotController.autoDrive.loop((System.currentTimeMillis() - origTime)/1000);
+    // Context.robotController.autoDrive.loop((System.currentTimeMillis() - origTime)/1000);
   }
 
   @Override
   public void teleopInit() {
-    Context.robotController.drivetrain.resetEncoders();
+    // Context.robotController.drivetrain.resetEncoders();
   }
   
   @Override
@@ -43,19 +43,19 @@ public class Robot extends TimedRobot {
     double driverThrottle = -Context.robotController.driverJoystick.getThrottle();
     double driverYaw = -Context.robotController.driverJoystick.getYaw();
     
-    if(Context.robotController.driverJoystick.getToggleTrack())
-    {
-      if(Context.robotController.visionAllignment.isActive()){
-        Context.robotController.visionAllignment.stopTrack();
-      } else {
-        Context.robotController.visionAllignment.startTrack();
-      }
-    }
+    // if(Context.robotController.driverJoystick.getToggleTrack())
+    // {
+    //   if(Context.robotController.visionAllignment.isActive()){
+    //     Context.robotController.visionAllignment.stopTrack();
+    //   } else {
+    //     Context.robotController.visionAllignment.startTrack();
+    //   }
+    // }
 
-    if(Context.robotController.driverJoystick.isInUse() || !Context.robotController.visionAllignment.isActive())
-    {
-      Context.robotController.visionAllignment.stopTrack();
-      Context.robotController.drivetrain.arcadeDrive(driverYaw, driverThrottle);
-    }
+    // if(Context.robotController.driverJoystick.isInUse() || !Context.robotController.visionAllignment.isActive())
+    // {
+    //   Context.robotController.visionAllignment.stopTrack();
+    //   Context.robotController.drivetrain.arcadeDrive(driverYaw, driverThrottle);
+    // }
   }
 }

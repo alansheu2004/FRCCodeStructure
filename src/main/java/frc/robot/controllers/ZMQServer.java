@@ -40,7 +40,7 @@ public class ZMQServer extends Thread
 
             unityPacket = g.fromJson(replyString, UnityPacket.class);
 
-            // System.out.println("Heartbeat = " + unityPacket.heartbeat);
+            System.out.println("Heartbeat = " + unityPacket.heartbeat);
 
             //Responding to unity server with data
             robotPacket.heartbeat = System.currentTimeMillis();
