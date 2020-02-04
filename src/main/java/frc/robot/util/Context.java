@@ -58,7 +58,7 @@ public class Context {
     //----- Vision Alignment System -----
     public static final double alignmentTimeout = 3000; //after how many milliseconds stop the alignment loop and abort
     public static final double alignmentThreshold = 0.5; //within how many degrees can we say "good enough" aligning the robot
-    public static final double ckStatic = 0.15;
+    public static final double ckStatic = 0.2;
 
     public static final double maxTurnPower = 2.0; // SAFETY
 

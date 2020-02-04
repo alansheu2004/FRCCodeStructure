@@ -53,7 +53,7 @@ public class VisionAllignment
             {
                 if(targetFound) {
                     // While the target is in the view of the Limelight, the PID will follow the Limelight data
-                    Context.robotController.drivetrain.arcadeDrive(0, loopHeadingPID(tx));
+                    Context.robotController.drivetrain.arcadeDrive(0, -loopHeadingPID(tx));
                 } else {
                     // While the target is out of view, the PID will follow the NavX data
                     Context.robotController.drivetrain.arcadeDrive(0, -loopHeadingPID(rotationLocalized));

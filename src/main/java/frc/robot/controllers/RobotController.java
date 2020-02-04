@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import frc.robot.util.Context;
 
 public class RobotController {
-    public TalonFXDrivetrain drivetrain;
+    public NeoDrivetrain drivetrain;
     public AutoDrive autoDrive;
     public NavX navX;
     public ZMQServer zmqServer;
@@ -12,11 +12,11 @@ public class RobotController {
     public DriverJoystick driverJoystick;
     public VisionAllignment visionAllignment;
     public Compressor compressor;
-    public Intake intake;
+    //public Intake intake;
 
     public RobotController () {
         /* Change this line when using a different drive train. Don't forget to change the motor ids in context */
-        drivetrain = new TalonFXDrivetrain();
+        drivetrain = new NeoDrivetrain();
         autoDrive = new AutoDrive();
         navX = new NavX();
         zmqServer = new ZMQServer();
@@ -25,7 +25,7 @@ public class RobotController {
         driverJoystick = new DriverJoystick();
         visionAllignment = new VisionAllignment();
         compressor = new Compressor();
-        intake = new Intake();
+        //intake = new Intake();
 
         Context.robotController = this;
     }
@@ -35,7 +35,7 @@ public class RobotController {
 
     public void loopAll() {
         ntInterface.run();
-        opticalLocalization.Update();
+        //opticalLocalization.Update();
         visionAllignment.loop();
     }
 }
