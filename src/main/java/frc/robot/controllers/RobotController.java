@@ -2,6 +2,9 @@ package frc.robot.controllers;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -18,6 +21,7 @@ public class RobotController {
     public DriverJoystick driverJoystick;
     public VisionAllignment visionAllignment;
     public Compressor compressor;
+    public ShooterController shooterController;
     public Intake intake;
     public OpticalLocalization opticalLocalization;
     public NMFColorSensorController ballPositions;
