@@ -1,8 +1,19 @@
 package frc.robot.subsystems;
 
-public abstract class Subsystem {
+import frc.robot.actions.Action;
 
-    public abstract void start();
+public abstract class Subsystem {
+    private Action currentAction;
+
+    public abstract void init();
 
     public abstract void loop();
+
+    public final void setCurrentAction(Action action) {
+        currentAction = action;
+    }
+
+    public final Action getCurrentAction() {
+        return currentAction;
+    }
 }

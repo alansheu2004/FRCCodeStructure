@@ -1,6 +1,6 @@
 package frc.robot.actions;
 
-public abstract class Action {
+public interface Action {
     public abstract void start();
 
     public abstract void loop();

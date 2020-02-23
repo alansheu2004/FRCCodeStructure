@@ -1,12 +1,17 @@
 package frc.robot.actions;
 
-public class ParallelActionGroup extends Action {
-    private Action[] actions;
-    private int actionsDone;
+import java.util.*;
 
-    public ParallelActionGroup(Action... actions) {
+public class ParallelActionGroup implements Action {
+    private HashMap<Action, Boolean> actionStates; //Whether the actions are finished
+
+    public ParallelActionGroup(SingleAction... actions) {
         this.actions = actions;
         actionsDone = 0;
+    }
+
+    private ParallelActionGroup() {
+
     }
     
     public void start() {

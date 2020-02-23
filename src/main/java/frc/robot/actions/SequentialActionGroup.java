@@ -1,6 +1,6 @@
 package frc.robot.actions;
 
-public class SequentialActionGroup extends Action {
+public class SequentialActionGroup implements Action {
     private Action[] actions;
     private int currentAction;
 

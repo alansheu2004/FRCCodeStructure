@@ -1,45 +1,24 @@
 package frc.robot.util;
 
-public class AdditionalMath
-{
-    public static double Clamp(double value, double min, double max)
+public final class AdditionalMath {
+    public static double clamp(double value, double min, double max)
     {
-        if(value >= max) return max;
-        if(value <= min) return min;
-        return value;
+        return Math.max(Math.min(value, max), min);
     }
 
-    public static double handle (double input, double deadband)
+    public static double handleDeadband (double value, double deadband)
     {
-        if (Math.abs(input) < Math.abs(deadband))
-        {
-            return 0.0;
-        }
-
-        return input;
+        return Math.abs(value)<deadband ? 0 : value;
     }
 
-    public static long handle (long input, long deadband)
+    public static long handle (long value, long deadband)
     {
-        if (Math.abs(input) < Math.abs(deadband))
-        {
-            return 0;
-        }
-
-        return input;
+        return Math.abs(value)<deadband ? 0 : value;
     }
 
     public static boolean isInRange(double value, double min, double max, boolean inclusive)
     {
-        if(inclusive)
-        {
-            if(value <= max && value >= min) return true;
-        }
-        else
-        {
-            if(value < max && value > min) return true;
-        }
-        return false;
+        return inclusive ? value <= max && value >= min : value < max && value > min;
     }
 
     public static double OvercomeFriction(double value, double decouple)
