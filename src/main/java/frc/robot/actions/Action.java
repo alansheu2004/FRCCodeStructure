@@ -5,5 +5,12 @@ public interface Action {
 
     public abstract void loop();
 
-    public abstract boolean isComplete();
+    public abstract ActionState getState();
+
+    public static enum ActionState {
+        IDLE,
+        BLOCKED,
+        RUNNING,
+        DONE
+    }
 }

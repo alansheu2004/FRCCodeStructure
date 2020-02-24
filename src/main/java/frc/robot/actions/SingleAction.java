@@ -4,19 +4,27 @@ import frc.robot.subsystems.Subsystem;
 
 public abstract class SingleAction implements Action {
     private Subsystem subsystem;
+    private ActionState state;
 
-    public SingleAction(Subsystem subsystem) {
+    protected SingleAction(Subsystem subsystem) {
         this.subsystem = subsystem;
-        
     }
 
-    public Subsystem getSubsystem() {
+    public final Subsystem getSubsystem() {
         return subsystem;
     }
 
-    public abstract void start();
+    public final ActionState getState() {
+        return state;
+    }
+
+    public void start() {
+        if(subsystem.setCurrentAction(this)) {
+            this.state = ActionState.RUNNING;
+        } else {
+            this.state = ActionState.BLOCKED;
+        }
+    }
 
     public abstract void loop();
-
-    public abstract boolean isComplete();
 }

@@ -8,24 +8,33 @@ public class SequentialActionGroup implements Action {
         this.actions = actions;
         currentAction = 0;
     }
+
+    public ActionState getState() {
+        if (currentAction == 0 && actions[currentAction].getState() =)
+    }
     
     public void start() {
         actions[currentAction].start();
     }
 
     public void loop() {
-        if(actions[currentAction].isComplete()) {
-            currentAction++;
-            actions[currentAction].start();
+        switch(actions[currentAction].getState()) {
+            case RUNNING:
+                actions[currentAction].loop();
+
+            case BLOCKED:
+                actions[currentAction].start();
+
+            case DONE:
+                currentAction++;
+                if(currentAction >= actions.length) { break; }
+                actions[currentAction].start();
+
+            case IDLE:
+                //Do Nothing...
+                
+            default:
+                System.out.println("Something's wrong with Sequential Action States!");
         }
-
-        if (currentAction < actions.length) {
-            actions[currentAction].loop();
-        }
-
-    }
-
-    public boolean isComplete() {
-        return currentAction >= actions.length;
     }
 }

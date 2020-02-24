@@ -1,19 +1,25 @@
 package frc.robot.subsystems;
 
-import frc.robot.actions.Action;
+import frc.robot.actions.SingleAction;
 
 public abstract class Subsystem {
-    private Action currentAction;
+    private SingleAction currentAction;
 
     public abstract void init();
 
     public abstract void loop();
 
-    public final void setCurrentAction(Action action) {
-        currentAction = action;
+    //Returns true if there if successfully set the action. Returns false if there was already an action running
+    public final boolean setCurrentAction(SingleAction action) {
+        if(currentAction == null) {
+            this.currentAction = action;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public final Action getCurrentAction() {
+    public final SingleAction getCurrentAction() {
         return currentAction;
     }
 }

@@ -1,36 +1,43 @@
 package frc.robot.actions;
 
-import java.util.*;
+public class ParallelActionGroup extends Action {
+    private Action[] actions; //Whether the actions are finished
 
-public class ParallelActionGroup implements Action {
-    private HashMap<Action, Boolean> actionStates; //Whether the actions are finished
-
-    public ParallelActionGroup(SingleAction... actions) {
+    public ParallelActionGroup(Action... actions) {
         this.actions = actions;
-        actionsDone = 0;
-    }
-
-    private ParallelActionGroup() {
-
     }
     
     public void start() {
-        actions[].start();
+        ActionState tempState = ActionState.BLOCKED;
+        for(Action action : actions) {
+            action.start();
+            if(action.state != ActionState.BLOCKED) {tempState = ActionState.RUNNING;}
+        }
+        this.state = tempState;
     }
 
     public void loop() {
-        if(actions[currentAction].isComplete()) {
-            currentAction++;
-            actions[currentAction].start();
+        int doneCount = 0;
+
+        for(Action action : actions) {
+            switch(action.state) {
+                case RUNNING:
+                    action.loop();
+                case BLOCKED:
+                    action.start();
+                case DONE:
+                    doneCount++;
+    
+                case IDLE:
+                    //Do Nothing...
+                    
+                default:
+                    System.out.println("Something's wrong with Sequential Action States!");
+            }
         }
 
-        if (currentAction < actions.length) {
-            actions[currentAction].loop();
+        if(doneCount >= actions.length) {
+
         }
-
-    }
-
-    public boolean isComplete() {
-        return currentAction >= actions.length;
     }
 }
