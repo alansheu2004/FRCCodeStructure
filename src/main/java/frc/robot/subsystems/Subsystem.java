@@ -5,9 +5,7 @@ import frc.robot.actions.SingleAction;
 public abstract class Subsystem {
     private SingleAction currentAction;
 
-    public abstract void init();
-
-    public abstract void loop();
+    private Subsystem instance;
 
     //Returns true if there if successfully set the action. Returns false if there was already an action running
     public final boolean setCurrentAction(SingleAction action) {
@@ -21,5 +19,9 @@ public abstract class Subsystem {
 
     public final SingleAction getCurrentAction() {
         return currentAction;
+    }
+
+    public final Subsystem getInstance() {
+        return instance;
     }
 }

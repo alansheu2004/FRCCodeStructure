@@ -18,13 +18,20 @@ public abstract class SingleAction implements Action {
         return state;
     }
 
+    protected final void setDone() {
+        state = ActionState.DONE;
+    }
+
     public void start() {
         if(subsystem.setCurrentAction(this)) {
-            this.state = ActionState.RUNNING;
+            state = ActionState.RUNNING;
+            init();
         } else {
-            this.state = ActionState.BLOCKED;
+            state = ActionState.BLOCKED;
         }
     }
+
+    public abstract void init();
 
     public abstract void loop();
 }
