@@ -8,11 +8,13 @@ import frc.robot.util.MatchPeriod;
 public class Scheduler {
     private Subsystem[] subsystems;
 
-    public MatchPeriod period;
-
     private Action[] robotInitActions;
     private Action[] autonomousInitActions;
     private Action[] teleopInitActions;
+
+    private ContinuousAction[] robotPeriodicActions;
+    private ContinuousAction[] autonomousPeriodicActions;
+    private ContinuousAction[] teleopPeriodicActions;
 
     private Trigger[] robotTriggers;
     private Trigger[] autonomousTriggers;

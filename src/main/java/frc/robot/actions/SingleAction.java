@@ -12,7 +12,7 @@ public abstract class SingleAction implements Action {
 
     public final Subsystem getSubsystem() {
         return subsystem;
-    }
+    } 
 
     public final ActionState getState() {
         return state;
