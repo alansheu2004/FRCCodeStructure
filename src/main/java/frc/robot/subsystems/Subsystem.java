@@ -4,6 +4,7 @@ import frc.robot.actions.SingleAction;
 
 public abstract class Subsystem {
     private SingleAction currentAction;
+    private SingleAction continuousAction;
 
     private Subsystem instance;
 
@@ -19,6 +20,20 @@ public abstract class Subsystem {
 
     public final SingleAction getCurrentAction() {
         return currentAction;
+    }
+
+
+    public final boolean setContinuousAction(SingleAction action) {
+        if(continuousAction == null) {
+            this.continuousAction = action;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public final SingleAction getContinuousAction() {
+        return continuousAction;
     }
 
     public final Subsystem getInstance() {

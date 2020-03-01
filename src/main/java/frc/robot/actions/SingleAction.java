@@ -8,6 +8,7 @@ public abstract class SingleAction implements Action {
 
     protected SingleAction(Subsystem subsystem) {
         this.subsystem = subsystem;
+        state = ActionState.IDLE;
     }
 
     public final Subsystem getSubsystem() {
@@ -20,9 +21,10 @@ public abstract class SingleAction implements Action {
 
     protected final void setDone() {
         state = ActionState.DONE;
+        subsystem
     }
 
-    public void start() {
+    public final void start() {
         if(subsystem.setCurrentAction(this)) {
             state = ActionState.RUNNING;
             init();

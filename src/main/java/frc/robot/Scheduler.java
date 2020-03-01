@@ -3,7 +3,6 @@ package frc.robot;
 import frc.robot.actions.Action;
 import frc.robot.subsystems.Subsystem;
 import frc.robot.triggers.Trigger;
-import frc.robot.util.MatchPeriod;
 
 public class Scheduler {
     private Subsystem[] subsystems;
@@ -12,14 +11,13 @@ public class Scheduler {
     private Action[] autonomousInitActions;
     private Action[] teleopInitActions;
 
-    private ContinuousAction[] robotPeriodicActions;
-    private ContinuousAction[] autonomousPeriodicActions;
-    private ContinuousAction[] teleopPeriodicActions;
+    private Action[] robotPeriodicActions;
+    private Action[] autonomousPeriodicActions;
+    private Action[] teleopPeriodicActions;
 
     private Trigger[] robotTriggers;
     private Trigger[] autonomousTriggers;
     private Trigger[] teleopTriggers;
-
 
     private static Scheduler instance;
 
