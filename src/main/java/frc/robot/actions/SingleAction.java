@@ -21,7 +21,7 @@ public abstract class SingleAction implements Action {
 
     protected final void setDone() {
         state = ActionState.DONE;
-        subsystem
+        subsystem.clearCurrentAction();
     }
 
     public final void start() {

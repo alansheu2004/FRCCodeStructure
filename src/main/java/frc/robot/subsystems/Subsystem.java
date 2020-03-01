@@ -1,12 +1,17 @@
 package frc.robot.subsystems;
 
 import frc.robot.actions.SingleAction;
+import frc.robot.RobotManager;
 
 public abstract class Subsystem {
     private SingleAction currentAction;
     private SingleAction continuousAction;
 
-    private Subsystem instance;
+    protected RobotManager manager;
+
+    public Subsystem(RobotManager manager) {
+        this.manager = manager;
+    }
 
     //Returns true if there if successfully set the action. Returns false if there was already an action running
     public final boolean setCurrentAction(SingleAction action) {
@@ -22,6 +27,9 @@ public abstract class Subsystem {
         return currentAction;
     }
 
+    public final void clearCurrentAction() {
+        currentAction = null;
+    }
 
     public final boolean setContinuousAction(SingleAction action) {
         if(continuousAction == null) {
@@ -36,7 +44,7 @@ public abstract class Subsystem {
         return continuousAction;
     }
 
-    public final Subsystem getInstance() {
-        return instance;
+    public final void clearContinuousAction() {
+        continuousAction = null;
     }
 }
