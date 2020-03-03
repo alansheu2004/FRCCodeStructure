@@ -17,7 +17,9 @@ public class ParallelActionGroup implements Action {
         ActionState tempState = ActionState.BLOCKED;
         for(Action action : actions) {
             action.start();
-            if(action.getState() != ActionState.BLOCKED) {tempState = ActionState.RUNNING;}
+            if(action.getState() != ActionState.BLOCKED) {
+                tempState = ActionState.RUNNING;
+            }
         }
         state = tempState;
     }
