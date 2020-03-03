@@ -18,6 +18,10 @@ public class PIDF {
 		dFactor = dFactor_;
 		fFactor = fFactor_;
 	}
+
+	public PIDF(double pFactor_, double iFactor_, double dFactor_) {
+		this(pFactor_, iFactor_, dFactor_, 0);
+	}
 	
 	//Runs through one step of the PID
 	//@param double setpoint_(goal value), double actual (current value), double timeFrame (time since last run)

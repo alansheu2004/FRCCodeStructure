@@ -2,11 +2,11 @@ package frc.robot.actions;
 
 import frc.robot.subsystems.*;
 
-public class WaitAction extends SingleAction {
+public class Wait extends SingleAction {
     private long startTime;
     private long waitTime;
 
-    public WaitAction(Subsystem subsystem, double waitTime) { //Wait time in seconds
+    public Wait(Subsystem subsystem, double waitTime) { //Wait time in seconds
         super(subsystem);
         this.waitTime = (long) (waitTime * 1000);
     }

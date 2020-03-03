@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.actions.Action;
+import frc.robot.actions.ContinuousAction;
 import frc.robot.subsystems.Subsystem;
 import frc.robot.triggers.Trigger;
 
@@ -12,17 +13,14 @@ public class RobotManager {
     private Subsystem[] subsystems;
 
     //Actions that should trigger at the beginning of each specified match period
-    private Action[] robotInitActions;
     private Action[] autonomousInitActions;
     private Action[] teleopInitActions;
 
     //Actions that should happen continuously if there is no active action in that subsystem
-    private Action[] robotPeriodicActions; 
-    private Action[] autonomousPeriodicActions;
-    private Action[] teleopPeriodicActions;
+    private ContinuousAction[] autonomousContinuousActions;
+    private ContinuousAction[] teleopContinuousActions;
 
     //Triggers that will cause an action in the given match period
-    private Trigger[] robotTriggers; 
     private Trigger[] autonomousTriggers;
     private Trigger[] teleopTriggers;
 
@@ -31,13 +29,6 @@ public class RobotManager {
     public RobotManager() {
         //Instantiate all subsystems here
 
-        subsystems = new Subsystem[] {
-            //List all subsystems here
-        };
-
-        robotInitActions = new Action[] {
-
-        };
 
         autonomousInitActions = new Action[] {
             
@@ -47,20 +38,12 @@ public class RobotManager {
             
         };
 
-        robotPeriodicActions = new Action[] {
-
-        };
-
-        autonomousPeriodicActions = new Action[] {
+        autonomousContinuousActions = new ContinuousAction[] {
             
         };
 
-        teleopPeriodicActions = new Action[] {
+        teleopContinuousActions = new ContinuousAction[] {
             
-        };
-
-        robotTriggers = new Trigger[] {
-
         };
 
         autonomousTriggers = new Trigger[] {
@@ -74,31 +57,28 @@ public class RobotManager {
         actionQueue = new ArrayList<Action>();
     }
 
-    public void robotInit() {
-        
-    }
-
-    public void robotPeriodic() {
-        triggerLoop(robotTriggers);
-        actionLoop();
-    }
-
     public void autonomousInit() {
-        
+        for (Action action : autonomousInitActions) {
+            actionQueue.add(action);
+        }
     }
 
     public void autonomousPeriodic() {
         triggerLoop(autonomousTriggers);
         actionLoop();
+        continuousActionLoop(autonomousContinuousActions);
     }
 
     public void teleopInit() {
-        
+        for (Action action : teleopInitActions) {
+            actionQueue.add(action);
+        }
     }
 
     public void teleopPeriodic() {
         triggerLoop(teleopTriggers);
         actionLoop();
+        continuousActionLoop(teleopContinuousActions);
     }
 
     private void triggerLoop(Trigger[] triggers) {
@@ -120,6 +100,21 @@ public class RobotManager {
                 case DONE:
                     actionQueue.remove(action);
             }
-        } 
+        }
+    }
+
+    private void continuousActionLoop(ContinuousAction[] actions) {
+        for (ContinuousAction action : actions) {
+            switch(action.getState()) {
+                case RUNNING:
+                    if(action.getSubsystem().getCurrentAction() == null) {
+                        action.loop();
+                    }
+                case IDLE:
+                case BLOCKED:
+                case DONE:
+                    // Do nothing...
+            }
+        }
     }
 }
