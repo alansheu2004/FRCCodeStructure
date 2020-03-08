@@ -4,14 +4,14 @@ import frc.robot.actions.Action;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class JoystickPOVPressTrigger extends Trigger {
+public class JoystickDpadPressTrigger extends Trigger {
     private Joystick joystick;
     private int povId;
     private int angle;
 
     private boolean alreadyTriggered;
 
-    public JoystickPOVPressTrigger(Action action, Joystick joystick, int povId, int angle) {
+    public JoystickDpadPressTrigger(Action action, Joystick joystick, int povId, int angle) {
         super(action);
         this.joystick = joystick;
         this.povId = povId;
@@ -19,14 +19,14 @@ public class JoystickPOVPressTrigger extends Trigger {
         this.alreadyTriggered = false;
     }
 
-    public JoystickPOVPressTrigger(Action action, Joystick joystick, int angle) {
+    public JoystickDpadPressTrigger(Action action, Joystick joystick, int angle) {
         this(action, joystick, 0, angle);
     }
 
     public boolean triggered() {
-        if (!alreadyTriggered) {
+        if (!alreadyTriggered && joystick.getPOV(povId) == angle) {
             alreadyTriggered = true;
-            return joystick.getPOV(povId) == angle;
+            return true;
         } else {
             if (joystick.getPOV(povId) == -1) {
                 alreadyTriggered = false;

@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 public class RobotManager {
     //Declare all subsystems here
-
-    private Subsystem[] subsystems;
+    
 
     //Actions that should trigger at the beginning of each specified match period
     private Action[] autonomousInitActions;

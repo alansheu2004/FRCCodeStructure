@@ -4,14 +4,14 @@ import frc.robot.actions.Action;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class JoystickPOVReleaseTrigger extends Trigger {
+public class JoystickDpadReleaseTrigger extends Trigger {
     private Joystick joystick;
     private int povId;
     private int angle;
 
     private boolean pressed;
 
-    public JoystickPOVReleaseTrigger(Action action, Joystick joystick, int povId, int angle) {
+    public JoystickDpadReleaseTrigger(Action action, Joystick joystick, int povId, int angle) {
         super(action);
         this.joystick = joystick;
         this.povId = povId;
@@ -19,7 +19,7 @@ public class JoystickPOVReleaseTrigger extends Trigger {
         this.pressed = false;
     }
 
-    public JoystickPOVReleaseTrigger(Action action, Joystick joystick, int angle) {
+    public JoystickDpadReleaseTrigger(Action action, Joystick joystick, int angle) {
         this(action, joystick, 0, angle);
     }
 
