@@ -1,6 +1,6 @@
 package frc.robot.actions;
 
-public class ParallelActionGroup implements Action {
+public class ParallelActionGroup extends Action {
     private Action[] actions; //Whether the actions are finished
     private ActionState state;
 

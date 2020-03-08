@@ -84,7 +84,12 @@ public class RobotManager {
     private void triggerLoop(Trigger[] triggers) {
         for (Trigger trigger : triggers) {
             if (trigger.triggered()) {
-                actionQueue.add(trigger.getAction());
+                try {
+                    actionQueue.add((Action) trigger.getAction().clone());
+                } catch (CloneNotSupportedException e) {
+                    System.err.println("Something went wrong with cloning actions!");
+                    System.err.println(e.getStackTrace());
+                }
             }
         }
     }

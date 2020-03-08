@@ -2,7 +2,7 @@ package frc.robot.actions;
 
 import frc.robot.subsystems.Subsystem;
 
-public abstract class SingleAction implements Action {
+public abstract class SingleAction extends Action {
     private Subsystem subsystem;
     private ActionState state;
 
