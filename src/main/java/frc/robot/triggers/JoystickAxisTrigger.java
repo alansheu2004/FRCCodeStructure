@@ -1,7 +1,6 @@
 package frc.robot.triggers;
 
 import frc.robot.actions.Action;
-import jdk.jfr.Threshold;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class JoystickAxisTrigger extends Trigger {

@@ -22,12 +22,10 @@ public class SequentialActionGroup extends Action {
 
     public void loop() {
         switch(actions[currentAction].getState()) {
-            case RUNNING:
-                actions[currentAction].loop();
-
             case BLOCKED:
                 actions[currentAction].start();
-
+            case RUNNING:
+                actions[currentAction].loop();
             case DONE:
                 currentAction++;
                 if(currentAction >= actions.length) { 
@@ -35,7 +33,6 @@ public class SequentialActionGroup extends Action {
                     break;
                 }
                 actions[currentAction].start();
-
             case IDLE:
                 //Do Nothing...
                 

@@ -2,21 +2,22 @@ package frc.robot;
 
 import frc.robot.actions.Action;
 import frc.robot.actions.ContinuousAction;
-import frc.robot.subsystems.Subsystem;
+import frc.robot.subsystems.*;
 import frc.robot.triggers.Trigger;
 
 import java.util.ArrayList;
 
 public class RobotManager {
     //Declare all subsystems here
-
-    private Subsystem[] subsystems;
+    
 
     //Actions that should trigger at the beginning of each specified match period
+    private Action[] robotInitActions;
     private Action[] autonomousInitActions;
     private Action[] teleopInitActions;
 
     //Actions that should happen continuously if there is no active action in that subsystem
+    private ContinuousAction[] robotContinuousActions;
     private ContinuousAction[] autonomousContinuousActions;
     private ContinuousAction[] teleopContinuousActions;
 
@@ -30,11 +31,19 @@ public class RobotManager {
         //Instantiate all subsystems here
 
 
+        robotInitActions = new Action[] {
+            
+        };
+
         autonomousInitActions = new Action[] {
             
         };
 
         teleopInitActions = new Action[] {
+            
+        };
+
+        robotContinuousActions = new ContinuousAction[] {
             
         };
 
@@ -55,6 +64,18 @@ public class RobotManager {
         };
 
         actionQueue = new ArrayList<Action>();
+    }
+
+    public void robotInit() {
+        for (Action action : robotInitActions) {
+            actionQueue.add(action);
+        }
+    }
+
+    public void robotPeriodic() {
+        triggerLoop(autonomousTriggers);
+        actionLoop();
+        continuousActionLoop(autonomousContinuousActions);
     }
 
     public void autonomousInit() {

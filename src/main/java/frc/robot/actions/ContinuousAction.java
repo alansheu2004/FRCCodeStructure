@@ -23,6 +23,7 @@ public abstract class ContinuousAction extends Action {
         if(subsystem.setContinuousAction(this)) {
             state = ActionState.RUNNING;
         } else {
+            System.err.println("Continuous action never reached");
             state = ActionState.BLOCKED;
         }
     }

@@ -29,21 +29,20 @@ public class ParallelActionGroup extends Action {
 
         for(Action action : actions) {
             switch(action.getState()) {
-                case RUNNING:
-                    action.loop();
                 case BLOCKED:
                     action.start();
+                case RUNNING:
+                    action.loop();
                 case DONE:
                     doneCount++;
                     if(doneCount >= actions.length) {
                         state = ActionState.DONE;
                     }
-    
                 case IDLE:
                     //Do Nothing...
                     
                 default:
-                    System.out.println("Something's wrong with Sequential Action States!");
+                    System.out.println("Something's wrong with Parallel Action States!");
             }
         }
 

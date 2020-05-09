@@ -8,11 +8,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     manager = new RobotManager();
+    manager.robotInit();
   }
 
   @Override
   public void robotPeriodic() {
-    
+    manager.robotPeriodic();
   }
 
   @Override
