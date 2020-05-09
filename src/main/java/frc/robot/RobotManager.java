@@ -73,9 +73,8 @@ public class RobotManager {
     }
 
     public void robotPeriodic() {
-        triggerLoop(autonomousTriggers);
         actionLoop();
-        continuousActionLoop(autonomousContinuousActions);
+        continuousActionLoop(robotContinuousActions);
     }
 
     public void autonomousInit() {
@@ -116,6 +115,7 @@ public class RobotManager {
     }
 
     private void actionLoop() {
+        ArrayList<Action> actionsDone = new ArrayList<>();
         for (Action action : actionQueue) {
             switch(action.getState()) {
                 case IDLE:
@@ -124,9 +124,10 @@ public class RobotManager {
                 case RUNNING:
                     action.loop();
                 case DONE:
-                    actionQueue.remove(action);
+                    actionsDone.add(action);
             }
         }
+        actionQueue.removeAll(actionsDone);
     }
 
     private void continuousActionLoop(ContinuousAction[] actions) {

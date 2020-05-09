@@ -22,6 +22,7 @@ public class SequentialActionGroup extends Action {
 
     public void loop() {
         switch(actions[currentAction].getState()) {
+            case IDLE:
             case BLOCKED:
                 actions[currentAction].start();
             case RUNNING:
@@ -33,8 +34,6 @@ public class SequentialActionGroup extends Action {
                     break;
                 }
                 actions[currentAction].start();
-            case IDLE:
-                //Do Nothing...
                 
             default:
                 System.out.println("Something's wrong with Sequential Action States!");

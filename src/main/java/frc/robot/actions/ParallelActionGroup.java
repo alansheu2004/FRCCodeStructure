@@ -29,6 +29,7 @@ public class ParallelActionGroup extends Action {
 
         for(Action action : actions) {
             switch(action.getState()) {
+                case IDLE:
                 case BLOCKED:
                     action.start();
                 case RUNNING:
@@ -38,8 +39,6 @@ public class ParallelActionGroup extends Action {
                     if(doneCount >= actions.length) {
                         state = ActionState.DONE;
                     }
-                case IDLE:
-                    //Do Nothing...
                     
                 default:
                     System.out.println("Something's wrong with Parallel Action States!");
