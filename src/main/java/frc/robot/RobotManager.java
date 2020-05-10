@@ -103,7 +103,11 @@ public class RobotManager {
 
     private void triggerLoop(Trigger[] triggers) {
         for (Trigger trigger : triggers) {
-            if (trigger.triggered()) {
+            if (trigger.getTriggerSet()) {
+                trigger.resetTrigger();
+            }
+
+            if (trigger.getTriggerSet() && trigger.triggered()) {
                 try {
                     actionQueue.add((Action) trigger.getAction().clone());
                 } catch (CloneNotSupportedException e) {

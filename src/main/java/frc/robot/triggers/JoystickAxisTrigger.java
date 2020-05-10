@@ -8,14 +8,11 @@ public class JoystickAxisTrigger extends Trigger {
     private int axisId;
     private double threshold;
 
-    private boolean alreadyTriggered;
-
     public JoystickAxisTrigger(Action action, Joystick joystick, int axisId, double threshold) {
         super(action);
         this.joystick = joystick;
         this.axisId = axisId;
         this.threshold = threshold;
-        this.alreadyTriggered = false;
     }
 
     public JoystickAxisTrigger(Action action, Joystick joystick, int axisId) {
@@ -23,24 +20,22 @@ public class JoystickAxisTrigger extends Trigger {
     }
 
     public boolean triggered() {
-        if (!alreadyTriggered) {
-            if (threshold >= 0 && joystick.getRawAxis(axisId) >= threshold) {
-                alreadyTriggered = true;
-                return true;
-            } else if (threshold < 0 && joystick.getRawAxis(axisId) <= threshold) {
-                alreadyTriggered = true;
-                return true;
-            } else {
-                return false;
-            }
+        if (threshold >= 0 && joystick.getRawAxis(axisId)>=threshold) {
+            triggerSet = false;
+            return true;
+        } else if (threshold < 0 && joystick.getRawAxis(axisId)<=threshold) {
+            triggerSet = false;
+            return true;
         } else {
-            if (threshold >= 0 && joystick.getRawAxis(axisId) < threshold) {
-                alreadyTriggered = false;
-            } else if (threshold < 0 && joystick.getRawAxis(axisId) > threshold) {
-                alreadyTriggered = false;
-            }
             return false;
         }
-        
+    }
+
+    public void resetTrigger() {
+        if (threshold >= 0 && joystick.getRawAxis(axisId)<=threshold) {
+            triggerSet = true;
+        } else if (threshold < 0 && joystick.getRawAxis(axisId)>=threshold) {
+            triggerSet = true;
+        }
     }
 }
