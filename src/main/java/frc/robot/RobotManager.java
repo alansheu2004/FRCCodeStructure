@@ -136,15 +136,8 @@ public class RobotManager {
 
     private void continuousActionLoop(ContinuousAction[] actions) {
         for (ContinuousAction action : actions) {
-            switch(action.getState()) {
-                case RUNNING:
-                    if(action.getSubsystem().getCurrentAction() == null) {
-                        action.loop();
-                    }
-                case IDLE:
-                case BLOCKED:
-                case DONE:
-                    // Do nothing...
+            if(action.getSubsystem().getCurrentAction() == null) {
+                action.loop();
             }
         }
     }
