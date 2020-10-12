@@ -85,8 +85,8 @@ public class RobotManager {
 
     public void autonomousPeriodic() {
         triggerLoop(autonomousTriggers);
-        actionLoop();
         continuousActionLoop(autonomousContinuousActions);
+        actionLoop();
     }
 
     public void teleopInit() {
@@ -97,8 +97,8 @@ public class RobotManager {
 
     public void teleopPeriodic() {
         triggerLoop(teleopTriggers);
-        actionLoop();
         continuousActionLoop(teleopContinuousActions);
+        actionLoop();
     }
 
     private void triggerLoop(Trigger[] triggers) {
